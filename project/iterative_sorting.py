@@ -27,17 +27,28 @@ def insertion_sort(arr):
                 arr[j], arr[j-1] = arr[j-1], arr[j]
     return arr
 
-arr = [5,4,3,5,7,9,20,12,34,57]
-print(arr)
 
-arr = insertion_sort(arr)
-print(arr)
 
 # STRETCH: implement the Bubble Sort function below
 def bubble_sort( arr ):
+    swap_instance = True
+    while swap_instance:
+        swap_instance = False
+        for i in range(0, len(arr)-1):
+            if arr[i] > arr[i+1]:
+                # swap
+                index = arr[i]
+                arr[i] = arr[i+1]
+                arr[i+1] = index
+                swap_instance = True
 
     return arr
 
+arr = [5,4,3,5,7,9,20,12,34,57]
+print(arr)
+
+arr = bubble_sort(arr)
+print(arr)
 
 # STRETCH: implement the Count Sort function below
 def count_sort( arr, maximum=-1 ):
