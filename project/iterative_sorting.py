@@ -51,6 +51,33 @@ arr = bubble_sort(arr)
 print(arr)
 
 # STRETCH: implement the Count Sort function below
-def count_sort( arr, maximum=-1 ):
+def count_sort(arr): 
+    if len(arr) == 0:
+        return arr
+    
+    maximum = max(arr) #declaring the highest value in the array
 
+    count = [0] * (maximum+1) #creating the 'count array'. The +1 is added so that the tallies will be at an index that's the same as the actual value of the ref number in the original array.  
+    for value in arr:
+        if value < 0:
+            return False #not allowing negative values
+        else:
+            count[value] += 1 #adding 1 tally for each instance of a number 
+
+    for i in range(1,len(count)): #Iterating over the 'count array': Replacing each number with the sum of itself and its predecessor. After this, each # in the arr will represent the sorted location of the value of its index.
+        count[i] += count[i-1]
+    
+    sorted_arr = [0] * len(arr) #creating a new sorted array
+
+    for i in range(0, len(arr)):
+        count_index = arr[i]
+        sorted_index = count[count_index]
+        sorted_arr[sorted_index-1] = count_index 
+        count[count_index] -= 1
+
+    
     return arr
+
+arr = [5,4,3,5,7,9,20,12,34,57]
+
+arr = count_sort(arr)
